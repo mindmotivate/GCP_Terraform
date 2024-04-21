@@ -7,6 +7,13 @@
 3. Click on "Create Service Account" and fill in the required details (name and description).
 4. Click "Create" and continue. Grant the service account permissions by selecting a role (e.g., Owner or Editor).
 5. Click "Done" to complete the process.
+   
+![Image20240421175752](https://github.com/mindmotivate/GCP_Terraform/assets/130941970/4094e37f-f1a5-4ca5-84b6-07e14fe4073e)
+
+<img src="https://github.com/mindmotivate/GCP_Terraform/assets/130941970/4094e37f-f1a5-4ca5-84b6-07e14fe4073e" alt="Image20240421175752" width="50%">
+
+<div style="text-align: left; margin-left: 2000px;"><img src="https://github.com/mindmotivate/GCP_Terraform/assets/130941970/4094e37f-f1a5-4ca5-84b6-07e14fe4073e" alt="Image20240421175752" width="50%"></div>
+
 
 **Step 2: Create a Key**
 
@@ -51,3 +58,32 @@
 2. Run `terraform validate`, `terraform plan`, and `terraform apply` to authenticate with GCP, check the plan, and apply the configuration, respectively.
 
 By following these steps, you can authenticate Terraform with GCP, configure a Terraform project, and deploy resources such as a Google Cloud Storage bucket using Terraform.
+
+
+
+***This is how you show code:***
+
+
+```hcl
+resource "google_storage_bucket" "static-site" {
+  name          = "image-store.com"
+  location      = "EU"
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
+  cors {
+    origin          = ["http://image-store.com"]
+    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+}
+```
+
+
+
